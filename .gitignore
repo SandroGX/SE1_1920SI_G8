@@ -1,0 +1,5 @@
+.mcuxpressoide_packages_support/
+.metadata/
+CMSIS_CORE_LPC17xx/
+FreeRTOS_TAD_logs/
+*/Debug
