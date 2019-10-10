@@ -38,8 +38,8 @@ int main(void)
     		time = 500;
     	else if(BUTTON_Hit() & BUTTON1)
     		time = 1000;
-    	//else if(BUTTON_Hit() & BUTTON2)
-    		//time = 1500;
+    	else if(BUTTON_Hit() & BUTTON2)
+    		time = 1500;
 
     	if(time <= 0)
     		continue;
