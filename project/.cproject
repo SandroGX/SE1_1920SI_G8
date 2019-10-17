@@ -239,4 +239,5 @@
 		<boardId>LPCXpresso1769-CD</boardId>
 	</storageModule>
 	<storageModule moduleId="refreshScope"/>
+	<storageModule moduleId="org.eclipse.cdt.core.pathentry"/>
 </cproject>

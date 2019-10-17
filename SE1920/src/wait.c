@@ -5,10 +5,17 @@
  *      Author: Saturn
  */
 
+#ifdef __USE_CMSIS
+#include "LPC17xx.h"
+#endif
+
+#include <cr_section_macros.h>
+
+
 void WAIT_Init(void)
 {
 	LPC_TIM0->CTCR = 0; //e timer
-	LPC_TIM0->MR0I = 1;//interrupt no match 0
+	LPC_TIM0->MCR = 1;//interrupt no match 0
 }
 
 /* Espera em microsegundos o valor passado no parâmetro. */

@@ -51,6 +51,4 @@ void LED_Off(void)
 {
 	LEDstate = false;
 	LPC_GPIO0->FIOCLR = LED;
-
-	LPC_TIM0->
 }

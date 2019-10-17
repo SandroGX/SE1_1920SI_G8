@@ -15,8 +15,10 @@
 #include <cr_section_macros.h>
 
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "wait.h"
+#include "lcd.h"
 
 // TODO: insert other include files here
 
@@ -24,6 +26,7 @@
 
 int main(void)
 {
+	LCDText_Init();
 
-
+	LCDText_WriteChar('a');
 }

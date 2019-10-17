@@ -1,3 +1,13 @@
+#ifdef __USE_CMSIS
+#include "LPC17xx.h"
+#endif
+
+#include <cr_section_macros.h>
+
+#include <stdbool.h>
+
+#include "time.h"
+#include "wait.h"
 
 #define RS 1<<6
 #define E 1<<7
@@ -12,27 +22,12 @@ void LCDWrite5bits(bool rs, int data4){
 	} else{
 		LPC_GPIO2->FIOCLR = RS;
 	}
-	if(data4 & (1<<3)){
-		LPC_GPIO2->FIOSET = DB7;
-	} else{
-		LPC_GPIO2->FIOCLR = DB7;
-	}
-	if(data4 & (1<<2)){
-		LPC_GPIO2->FIOSET = DB6;
-	} else{
-		LPC_GPIO2->FIOCLR = DB6;
-	}
-	if(data4 & (1<<1)){
-		LPC_GPIO2->FIOSET = DB5;
-	} else{
-		LPC_GPIO2->FIOCLR = DB5;
-	}
-	if(data4 & 1){
-		LPC_GPIO2->FIOSET = DB4;
-	} else{
-		LPC_GPIO2->FIOCLR = DB4;
-	}
+
+	LPC_GPIO2->FIOCLR = 0x0f;
+	LPC_GPIO2->FIOSET = data4 & 0x0f;
+
 	LPC_GPIO2->FIOSET = E;
+	WAIT_ChronoUs(2);
 	LPC_GPIO2->FIOCLR = E;
 }
 
@@ -43,17 +38,18 @@ void LCDWrite9bits(bool rs, int data8){
 
 void LCDWriteCMD(int cmd8){
 	LCDWrite9bits(false,cmd8);
+	WAIT_ChronoUs(2);
 }
 
 void LCDWriteData(int data8){
-	LCDWrite9bits(true,cmd8);
+	LCDWrite9bits(true,data8);
 }
 
 /* Faz a iniciação do sistema para permitir o acesso ao periférico LCD,
  * utilizando 2 linhas com 16 colunas e comunicação a 4 bits.*/
 void LCDText_Init(void){
 	//power on
-	Wait(20); //wait more than 15 ms
+	wait(20); //wait more than 15 ms
 	LPC_GPIO2->FIODIR |= RS;
 	LPC_GPIO2->FIODIR |= DB7;
 	LPC_GPIO2->FIODIR |= DB6;
@@ -63,29 +59,25 @@ void LCDText_Init(void){
 
 	LCDWrite5bits(false,0b0011);
 
-	Wait(5); //wait more than 4.1 ms
+	wait(5); //wait more than 4.1 ms
 
 	LCDWrite5bits(false, 0b0011);
 
-	Wait(1); //wait more than 100 ys
+	wait(1); //wait more than 100 ys
 
 	LCDWrite5bits(false, 0b0011);
+	WAIT_ChronoUs(2);
 
 	LCDWrite5bits(false, 0b0010);
+	WAIT_ChronoUs(2);
 
-	LCDWrite5bits(false, 0b1110);
+	LCDWriteCMD(0b00101110);
 
-	LCDWrite5bits(false, 0b0000);
+	LCDWriteCMD(0b00001000);
 
-	LCDWrite5bits(false, 0b1000);
+	LCDWriteCMD(0b00000001);
 
-	LCDWrite5bits(false, 0b0000);
-
-	LCDWrite5bits(false, 0b0001);
-
-	LCDWrite5bits(false,0b0000);
-
-	LCDWrite5bits(false, 0b0110);
+	LCDWriteCMD(0b00000110);
 }
 
 /* Escreve um carácter na posição corrente do cursor. */
@@ -105,7 +97,7 @@ void LCDText_Locate(int row, int column){
 
 /* Limpa o visor, usando o comando disponível na API do periférico. */
 void LCDText_Clear(void){
-
+	LCDWriteCMD(1);
 }
 
 /* DESAFIO */
