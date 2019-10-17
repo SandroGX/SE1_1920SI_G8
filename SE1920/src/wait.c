@@ -21,7 +21,7 @@ void WAIT_Init(void)
 /* Espera em microsegundos o valor passado no parâmetro. */
 void WAIT_ChronoUs(uint32_t waitUs)
 {
-	LPC_TIM0->MR0 = waitUs; //set match
+	LPC_TIM0->MR0 = waitUs * 100; //set match
 
 	LPC_TIM0->TCR = 1; //reiniciar timer
 

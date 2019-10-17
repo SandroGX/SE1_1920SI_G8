@@ -17,6 +17,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+#include "time.h"
 #include "wait.h"
 #include "lcd.h"
 
@@ -26,7 +27,12 @@
 
 int main(void)
 {
+	WAIT_Init();
+	wait_init();
 	LCDText_Init();
 
-	LCDText_WriteChar('a');
+	LCD_Control(true, true, true);
+	LCDText_WriteChar('A');
+	LCDText_WriteChar('B');
+	LCDText_WriteString("CDEFG");
 }
