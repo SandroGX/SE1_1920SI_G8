@@ -90,22 +90,30 @@ void LCDText_Init(void){
 
 /* Escreve um carácter na posição corrente do cursor. */
 void LCDText_WriteChar(char ch){
-
+	if(ch != 0){
+		LCDWriteData(ch);
+	}
 }
 
 /* Escreve uma string na posição corrente do cursor. */
 void LCDText_WriteString(char *str){
-
+	int i = 0;
+	while(*(str+i) != '\0'){
+		LCDText_WriteChar(*(str+i));
+	}
 }
 
 /* Posiciona o cursor na linha row e coluna column do mostrador. */
 void LCDText_Locate(int row, int column){
-
+	if(row == 1){
+		LCDWriteCMD(192 + column);
+	} else writeCMD(128 + column);
 }
 
 /* Limpa o visor, usando o comando disponível na API do periférico. */
 void LCDText_Clear(void){
-
+	LCD_WriteCMD(1);
+	LCDText_Locate(0,0);
 }
 
 /* DESAFIO */
