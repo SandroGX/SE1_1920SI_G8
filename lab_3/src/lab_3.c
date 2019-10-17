@@ -1,6 +1,6 @@
 /*
 ===============================================================================
- Name        : lab_2.c
+ Name        : lab_3.c
  Author      : $(author)
  Version     :
  Copyright   : $(copyright)
@@ -15,11 +15,8 @@
 #include <cr_section_macros.h>
 
 #include <stdio.h>
-#include <stdbool.h>
 
-#include "buttons.h"
-#include "time.h"
-#include "led.h"
+#include "wait.h"
 
 // TODO: insert other include files here
 
@@ -27,26 +24,6 @@
 
 int main(void)
 {
-	wait_init();
-	BUTTON_Init();
-	LED_Init(false);
 
-	int time = 0;
-    for(;;)
-    {
-    	if(BUTTON_Hit() & BUTTON0)
-    		time = 500;
-    	else if(BUTTON_Hit() & BUTTON1)
-    		time = 1000;
-    	else if(BUTTON_Hit() & BUTTON2)
-    		time = 1500;
 
-    	if(time <= 0)
-    		continue;
-
-    	LED_On();
-    	wait(time);
-    	LED_Off();
-    	time = 0;
-    }
 }
