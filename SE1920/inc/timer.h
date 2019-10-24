@@ -5,12 +5,12 @@
  *      Author: Sandro
  */
 
-#ifndef TIME_H_
-#define TIME_H_
+#ifndef TIMER_H_
+#define TIMER_H_
 
 void wait_init();
 uint32_t wait_ms();
 uint32_t wait_elapsed(uint32_t time);
 void wait(uint32_t milis);
 
-#endif /* TIME_H_ */
+#endif /* TIMER_H_ */

@@ -1,12 +1,15 @@
+
 #ifdef __USE_CMSIS
 #include "LPC17xx.h"
 #endif
 
 #include <cr_section_macros.h>
 
+#include <stdio.h>
 #include <stdbool.h>
+#include <stdarg.h>
 
-#include "time.h"
+#include "timer.h"
 #include "wait.h"
 
 #define RS 1<<6
@@ -120,8 +123,17 @@ void LCD_EntryModeSet(bool ID, bool S)
 /* DESAFIO */
 /* Escreve na posição corrente do cursor a string fmt. O formato da string
  *  fmt é idêntico à função printf da biblioteca standard da linguagem C. */
-void LCDText_Printf(char *fmt, ...){
+void LCDText_Printf(char *fmt, ...)
+{
+	va_list valist;
+	va_start(valist, fmt);
+	char str[20];
+	int length = vsprintf(str, fmt, valist);
+	va_end(valist);
 
+	for(int i = 0; i < length; ++i){
+		LCDText_WriteChar(str[i]);
+	}
 }
 
 /* Faz a iniciação do sistema para permitir o acesso ao periférico LCD,

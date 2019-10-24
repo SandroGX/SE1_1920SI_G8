@@ -18,7 +18,7 @@
 #include <stdbool.h>
 
 #include "buttons.h"
-#include "time.h"
+#include "timer.h"
 #include "led.h"
 
 // TODO: insert other include files here
