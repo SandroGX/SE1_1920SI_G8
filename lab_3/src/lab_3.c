@@ -20,6 +20,7 @@
 #include "time.h"
 #include "wait.h"
 #include "lcd.h"
+#include "led.h"
 
 // TODO: insert other include files here
 
@@ -29,10 +30,10 @@ int main(void)
 {
 	WAIT_Init();
 	wait_init();
+
+
 	LCDText_Init();
 
 	LCD_Control(true, true, true);
-	LCDText_WriteChar('A');
-	LCDText_WriteChar('B');
-	LCDText_WriteString("CDEFG");
+	LCDText_WriteString("ABCDEFG123");
 }
