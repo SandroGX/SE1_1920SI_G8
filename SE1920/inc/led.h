@@ -1,25 +1,58 @@
-/*
- * led.h
- *
- *  Created on: 03/10/2019
- *      Author: Saturn
- */
+/**
+* @file		led.h
+* @brief	Contains the LED API.
+* @version	1.0
+* @date		31 Out 2019
+* @author	SE1_1920_i_G8
+*/
 
 #ifndef LED_H_
 #define LED_H_
 
-/* Faz a iniciação do sistema para permitir a manipulação do estado LED que
-existe na placa de prototipagem LPCXpresso LPC1769. Deixa o LED apagado quando
-state toma o valor false ou aceso quando true. */
+/** @defgroup LED LED
+ * This package provides the core capabilities such as on / off the LED in
+ * port P0.22 of the LPC1769 from NXP.
+ * @{
+ */
+
+/** @defgroup LED_Public_Functions LED Public Functions
+ * @{
+ */
+
+/**
+ * @brief	Initializes the LED API
+ * @param	state	: State of the LED. The 0 indicate led off and 1 LED on.
+ * @return	Nothing
+ * @note	This function must be called prior to any other LED functions. The
+ * LED will started in the value passed in the parameter.
+ */
 void LED_Init(bool state);
 
-/* Devolve true se o LED está apagado e false se o LED estiver apagado. */
+/**
+ * @brief	Get LED state.
+ * @return	status of LED. The 0 indicate led is off and 1 LED is on.
+ */
 bool LED_GetState(void);
 
-/* Acende o LED. */
+/**
+ * @brief	Turn LED on
+ * @return	Nothing
+ */
 void LED_On(void);
 
-/* Apaga o LED. */
+/**
+ * @brief	Turn LED off
+ * @return	Nothing
+ */
 void LED_Off(void);
+
+/**
+ * @}
+ */
+
+
+/**
+ * @}
+ */
 
 #endif /* LED_H_ */

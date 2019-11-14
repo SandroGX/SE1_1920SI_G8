@@ -33,6 +33,7 @@
 #define BUTTON2 1<<BUTTON2_PIN
 
 
+
 /* Faz a iniciação do sistema para permitir o acesso aos botões */
 void BUTTON_Init(void)
 {

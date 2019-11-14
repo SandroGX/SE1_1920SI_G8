@@ -2,4 +2,5 @@
 .metadata/
 CMSIS_CORE_LPC17xx/
 FreeRTOS_TAD_logs/
+*/doc
 */Debug
