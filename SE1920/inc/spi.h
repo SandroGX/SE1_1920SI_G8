@@ -7,3 +7,6 @@ void SPI_ConfigTransfer(int frequency, int bitData, int mode);
 
 /* Realiza uma transferência. Retorna sucesso ou erro na transferência. */
 int SPI_Transfer(unsigned short *txBuffer, unsigned short *rxBuffer, int length);
+
+/* Realiza uma transferência. Retorna sucesso ou erro na transferência. buffer com unidade de um byte*/
+int SPI_Transfer8(unsigned char *txBuffer, unsigned char *rxBuffer, int length);
