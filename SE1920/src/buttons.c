@@ -74,3 +74,8 @@ uint32_t BUTTON_GetButtonsEvents(void)
 {
 	return 0;
 }
+
+/* Espera ate nenhum botao esteja pressionado*/
+void BUTTON_WaitNoneHit(void){
+	while(BUTTON_Hit() != 0);
+}

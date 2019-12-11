@@ -9,6 +9,8 @@
 #ifndef LCD_H_
 #define LCD_H_
 
+#include <stdbool.h>
+
 /** @defgroup LCD LCD
  * This package provides the ability to write to the LCD
  * @{

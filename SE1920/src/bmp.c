@@ -11,52 +11,40 @@
 
 typedef long signed int BMP280_S32_t;
 
-#define dig_T1_address0 0x88
-#define dig_T1_address1 0x89
+#define dig_T1_address 0x88
 unsigned short dig_T1;
 
-#define dig_T2_address0 0x8A
-#define dig_T2_address1 0x8A
+#define dig_T2_address 0x8A
 signed short dig_T2;
 
-#define dig_T3_address0 0x8C
-#define dig_T3_address1 0x8D
+#define dig_T3_address 0x8C
 signed short dig_T3;
 
-#define dig_P1_address0 0x8E
-#define dig_P1_address1 0x8F
+#define dig_P1_address 0x8E
 unsigned short dig_P1;
 
-#define dig_P2_address0 0x90
-#define dig_P2_address1 0x91
+#define dig_P2_address 0x90
 signed short dig_P2;
 
-#define dig_P3_address0 0x92
-#define dig_P3_address1 0x93
+#define dig_P3_address 0x92
 signed short dig_P3;
 
-#define dig_P4_address0 0x94
-#define dig_P4_address1 0x95
+#define dig_P4_address 0x94
 signed short dig_P4;
 
-#define dig_P5_address0 0x96
-#define dig_P5_address1 0x97
+#define dig_P5_address 0x96
 signed short dig_P5;
 
-#define dig_P6_address0 0x98
-#define dig_P6_address1 0x99
+#define dig_P6_address 0x98
 signed short dig_P6;
 
-#define dig_P7_address0 0x9A
-#define dig_P7_address1 0x9B
+#define dig_P7_address 0x9A
 signed short dig_P7;
 
-#define dig_P8_address0 0x9C
-#define dig_P8_address1 0x9D
+#define dig_P8_address 0x9C
 signed short dig_P8;
 
-#define dig_P9_address0 0x9E
-#define dig_P9_address1 0x9F
+#define dig_P9_address 0x9E
 signed short dig_P9;
 
 #define SPI_FREQ 10000000
@@ -73,18 +61,18 @@ void BMP_init(){
 	LPC_GPIO0->FIOSET = 1<<16; //clear slave chip select
 	LPC_GPIO0 ->FIODIR |= 1<<16; //out
 
-	dig_T1 = readUnsignedShort(dig_T1_address0);
-	dig_T2 = readSignedShort(dig_T2_address0);
-	dig_T3 = readSignedShort(dig_T3_address0);
-	dig_P1 = readUnsignedShort(dig_P1_address0);
-	dig_P2 = readSignedShort(dig_P2_address0);
-	dig_P3 = readSignedShort(dig_P3_address0);
-	dig_P4 = readSignedShort(dig_P4_address0);
-	dig_P5 = readSignedShort(dig_P5_address0);
-	dig_P6 = readSignedShort(dig_P6_address0);
-	dig_P7 = readSignedShort(dig_P7_address0);
-	dig_P8 = readSignedShort(dig_P8_address0);
-	dig_P9 = readSignedShort(dig_P9_address0);
+	dig_T1 = readUnsignedShort(dig_T1_address);
+	dig_T2 = readSignedShort(dig_T2_address);
+	dig_T3 = readSignedShort(dig_T3_address);
+	dig_P1 = readUnsignedShort(dig_P1_address);
+	dig_P2 = readSignedShort(dig_P2_address);
+	dig_P3 = readSignedShort(dig_P3_address);
+	dig_P4 = readSignedShort(dig_P4_address);
+	dig_P5 = readSignedShort(dig_P5_address);
+	dig_P6 = readSignedShort(dig_P6_address);
+	dig_P7 = readSignedShort(dig_P7_address);
+	dig_P8 = readSignedShort(dig_P8_address);
+	dig_P9 = readSignedShort(dig_P9_address);
 }
 
 unsigned char* spiRead(char reg, int length)

@@ -17,15 +17,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include "timer.h"
+#include "wait.h"
+#include "lcd.h"
+#include "led.h"
 #include "spi.h"
 #include "bmp.h"
 
 #include <stdbool.h>
 
-#include "timer.h"
-#include "wait.h"
-#include "lcd.h"
-#include "led.h"
 
 int main(void)
 {
@@ -60,9 +60,9 @@ int main(void)
 	while(true) {
 		LCDText_Clear();
 		LCDText_Locate(0, 0);
-		LCDText_Printf("%5.2f C", getTemperature());
+		LCDText_Printf("%05.2f C", getTemperature());
 		LCDText_Locate(1, 0);
-		LCDText_Printf("%8.2f Pa", getPressure());
+		LCDText_Printf("%08.2f Pa", getPressure());
 		wait(200);
 	}
 }

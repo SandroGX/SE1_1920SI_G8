@@ -9,6 +9,9 @@
 #ifndef LED_H_
 #define LED_H_
 
+#include <stdbool.h>
+
+
 /** @defgroup LED LED
  * This package provides the core capabilities such as on / off the LED in
  * port P0.22 of the LPC1769 from NXP.

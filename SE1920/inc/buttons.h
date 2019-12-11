@@ -110,4 +110,6 @@ int BUTTON_GetButtonsEvents(void);
  * @}
  */
 
+void BUTTON_WaitNoneHit(void);
+
 #endif /* BUTTONS_H_ */

@@ -40,7 +40,6 @@ void RTC_SetSeconds(time_t seconds);
  * @brief returns the current value of RTC
  * @returns time in seconds since january 1st 1970  00:00:00 UTC
  */
-1970. */
 time_t RTC_GetSeconds(void);
 
 /**
