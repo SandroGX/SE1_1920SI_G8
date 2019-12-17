@@ -62,7 +62,7 @@ int main(void)
 		LCDText_Locate(0, 0);
 		LCDText_Printf("%05.2f C", getTemperature());
 		LCDText_Locate(1, 0);
-		LCDText_Printf("%08.2f Pa", getPressure());
+		LCDText_Printf("%05.2f Pa", getPressure());
 		wait(200);
 	}
 }

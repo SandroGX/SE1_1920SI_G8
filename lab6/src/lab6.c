@@ -16,19 +16,30 @@
 
 #include <stdio.h>
 
-// TODO: insert other include files here
-
-// TODO: insert other definitions and declarations here
+#include "flash.h"
 
 int main(void) {
 
-    printf("Hello World\n");
+	void *dstAddr = (void*)0x78000;
+	unsigned int size = 256;
+	char sentence[256] = "Hello World, how are you? ABCDEFGHIJKLMNOP";
 
-    // Force the counter to be placed into memory
-    volatile static int i = 0 ;
-    // Enter an infinite loop, just incrementing a counter
-    while(1) {
-        i++ ;
-    }
-    return 0 ;
+	int error;
+	if((error = FLASH_EraseSectors(29, 29)))
+		printf("ERASE ERROR %d\n", error);
+	else if((error = FLASH_WriteData(dstAddr, (void*)sentence, size)))
+		printf("WRITE ERROR %d\n", error);
+
+	printf("Sentence: %s\n", (char*)dstAddr);
+
+	char sentence2[256] = "GOODBYE";
+	if((error = FLASH_WriteData(dstAddr, (void*)sentence2, 7)))
+		printf("WRITE ERROR %d\n", error);
+
+	printf("Sentence2: %s\n", (char*)dstAddr);
+
+	if((error = FLASH_VerifyData(dstAddr, sentence, size)))
+		printf("VERIFY ERROR %d\n", error);
+	else if((error = FLASH_EraseSectors(29, 29)))
+		printf("ERASE ERROR %d\n", error);
 }

@@ -61,6 +61,41 @@ int UI_Digit(int l, int c, int min, int max, int initVal,int maxDigits)
 	return digit;
 }
 
+int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits) // @suppress("No return")
+{
+	initVal = initVal > max ? min : initVal;
+	initVal = initVal < min ? max : initVal;
+
+	LCDText_Locate(l, c);
+	LCDText_Printf("%0*d", maxDigits, initVal); //min: 4532 max: 8674
+
+	int digit = 1;
+	for(int i = 0; i < maxDigits-1; ++i)
+		digit *= 10;
+
+	int number = 0;
+	int remainderMin = min;
+	int remaindertMax = max;
+	int remainderInit = initVal;
+	bool allowMin = false, allowMax = false;
+
+	for(int i = 0; i < maxDigits; ++i)
+	{
+		int d = UI_Digit(l, c+i, allowMin ? 0 : remainderMin/digit, allowMax ? 9 : remaindertMax/digit, remainderInit/digit, 1);
+		number += d;
+
+		if(allowMin == false && d > remainderMin/digit)
+			allowMin = true;
+		if(allowMax == false && d < remaindertMax/digit)
+			allowMax = true;
+
+		remainderMin %= digit;
+		remaindertMax %= digit;
+		remainderInit %= digit;
+		digit /= 10;
+	}
+	return number;
+}
 void UI_DisplayTime(int l, int c)
 {
 	struct tm dateTime;

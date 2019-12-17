@@ -4,6 +4,7 @@
 	<comment></comment>
 	<projects>
 		<project>CMSIS_CORE_LPC17xx</project>
+		<project>SE1920</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

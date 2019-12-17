@@ -9,6 +9,7 @@
 #define UI_H_
 
 int UI_Digit(int l, int c, int min, int max, int initVal,int maxDigits);
+int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits);
 void UI_DisplayTime(int l, int c);
 void UI_SetTime(int l, int c);
 
