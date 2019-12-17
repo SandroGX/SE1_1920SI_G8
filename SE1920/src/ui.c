@@ -53,9 +53,10 @@ int UI_Digit(int l, int c, int min, int max, int initVal,int maxDigits)
 			--digit;
 			digit = digit < min ? max : digit;
 		}
-		else if(code == ENTERBUTTON)
+		else if(code == ENTERBUTTON){
+			wait(200);
 			break;
-
+		}
 		wait(200);
 	}
 	return digit;
@@ -81,12 +82,12 @@ int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits) // @su
 
 	for(int i = 0; i < maxDigits; ++i)
 	{
-		int d = UI_Digit(l, c+i, allowMin ? 0 : remainderMin/digit, allowMax ? 9 : remaindertMax/digit, remainderInit/digit, 1);
+		int d = UI_Digit(l, c+i, allowMin ? 0 : remainderMin/digit, allowMax ? 9 : remaindertMax/digit, remainderInit/digit, 1) * digit;
 		number += d;
 
-		if(allowMin == false && d > remainderMin/digit)
+		if(allowMin == false && d/digit > remainderMin/digit)
 			allowMin = true;
-		if(allowMax == false && d < remaindertMax/digit)
+		if(allowMax == false && d/digit < remaindertMax/digit)
 			allowMax = true;
 
 		remainderMin %= digit;
@@ -112,11 +113,22 @@ void UI_SetTime(int l, int c)
 	LCDText_Locate(l, c);
 	LCDText_Printf(DATE_FORMAT, dateTime.tm_year, dateTime.tm_mon, dateTime.tm_mday, dateTime.tm_hour, dateTime.tm_min);
 
-	dateTime.tm_year = UI_Digit(l, c+YEAR_C, 0, 9999, dateTime.tm_year, 4);
-	dateTime.tm_mon = UI_Digit(l, c+MON_C, 1, 12, dateTime.tm_mon, 2);
-	dateTime.tm_mday = UI_Digit(l, c+DAY_C, 1, 31, dateTime.tm_mday, 2);
-	dateTime.tm_hour = UI_Digit(l, c+HOUR_C, 0, 23, dateTime.tm_hour, 2);
-	dateTime.tm_min = UI_Digit(l, c+MIN_C, 0, 59, dateTime.tm_min, 2);
+	dateTime.tm_year = UI_Number(l, c+YEAR_C, 0, 4095, dateTime.tm_year, 4);
+	dateTime.tm_mon = UI_Number(l, c+MON_C, 1, 12, dateTime.tm_mon, 2);
+	int max_day;
+	int m_days[12] = { 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+	if(dateTime.tm_mon == 2){
+		if(dateTime.tm_year%4==0 && !dateTime.tm_year%100==0 || dateTime.tm_year%400==0){
+			max_day = 29;
+		} else {
+			max_day = 28;
+		}
+	} else {
+		max_day = m_days[dateTime.tm_mon-1];
+	}
+	dateTime.tm_mday = UI_Number(l, c+DAY_C, 1, max_day, dateTime.tm_mday, 2);
+	dateTime.tm_hour = UI_Number(l, c+HOUR_C, 0, 23, dateTime.tm_hour, 2);
+	dateTime.tm_min = UI_Number(l, c+MIN_C, 0, 59, dateTime.tm_min, 2);
 
 	RTC_SetValue(&dateTime);
 }

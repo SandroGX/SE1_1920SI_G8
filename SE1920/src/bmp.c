@@ -6,7 +6,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 #include "spi.h"
 
 typedef long signed int BMP280_S32_t;
@@ -180,10 +180,11 @@ double bmp280_compensate_P_double(BMP280_S32_t adc_P)
 	return p;
 }
 
-double getTemperature()
+double getTemperature(bool CnotF)
 {
 	BMP280_S32_t adc_T = readAdc(0xfa);
-	return bmp280_compensate_T_double(adc_T);
+	double value = bmp280_compensate_T_double(adc_T);
+	return CnotF ? value : (value * 1.8 + 32);
 }
 
 double getPressure()
