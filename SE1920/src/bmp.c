@@ -55,6 +55,11 @@ signed short readSignedShort(char reg);
 unsigned short readUnsignedShort(char reg);
 void spiConfig();
 
+void freeRxBuffer(unsigned char* rxBuffer)
+{
+    free(rxBuffer-1);
+}
+
 void BMP_init(){
 	LPC_PINCON->PINSEL1 = 0b00 | (LPC_PINCON->PINSEL1 & ~(0b11)); //Slave chip select
 
@@ -96,7 +101,7 @@ signed short readSignedShort(char reg)
 {
 	unsigned char* p = spiRead(reg, sizeof(signed short));
 	signed short val = *((signed short*)p);
-	free(p);
+	freeRxBuffer(p);
 	return val;
 }
 
@@ -104,7 +109,7 @@ unsigned short readUnsignedShort(char reg)
 {
 	unsigned char* p = spiRead(reg, sizeof(unsigned short));
 	unsigned short val = *((unsigned short*)p);
-	free(p);
+	freeRxBuffer(p);
 	return val;
 }
 
@@ -112,7 +117,7 @@ BMP280_S32_t readAdc(char reg)
 {
 	unsigned char* p = spiRead(reg, 3);
 	BMP280_S32_t adc = (int)p[0]<<12 | (int)p[1]<<4 | (int)p[2]>>4;
-	free(p);
+	freeRxBuffer(p);
 	return adc;
 }
 

@@ -46,7 +46,7 @@ int UI_SelectOptions(char* options[], int count)
 
 	while(true)
 	{
-		LCDText_Locate(0, 0);
+		LCDText_Clear();
 		LCDText_Printf("%s <", options[selected]);
 
 		LCDText_Locate(1, 0);
@@ -62,7 +62,7 @@ int UI_SelectOptions(char* options[], int count)
 		else if(code & ENTERBUTTON)
 			return selected;
 
-		circleValue(selected, 0, count-1);
+		selected = circleValue(selected, 0, count-1);
 	}
 }
 
@@ -72,7 +72,7 @@ void UI_SelectMenu(Menu menu[], int count)
 
 	while(true)
 	{
-		LCDText_Locate(0, 0);
+		LCDText_Clear();
 		LCDText_Printf("%s <", menu[selected].name);
 
 		LCDText_Locate(1, 0);
@@ -90,7 +90,7 @@ void UI_SelectMenu(Menu menu[], int count)
 			selected = 0;
 		}
 
-		circleValue(selected, 0, count-1);
+		selected = circleValue(selected, 0, count-1);
 	}
 }
 
@@ -103,7 +103,7 @@ void UI_StartMenu(Menu menu[], int count, int init)
 int UI_Digit(int l, int c, int min, int max, int initVal, int maxDigits)
 {
 	int digit = initVal;
-	circleValue(digit, min, max);
+	digit = circleValue(digit, min, max);
 
 	LCDText_Locate(l, c);
 	while(1){
@@ -121,14 +121,14 @@ int UI_Digit(int l, int c, int min, int max, int initVal, int maxDigits)
 		else if(code == ENTERBUTTON)
 			break;
 
-		circleValue(digit, min, max);
+		digit = circleValue(digit, min, max);
 	}
 	return digit;
 }
 
 int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits) // @suppress("No return")
 {
-	circleValue(initVal, min, max);
+	initVal = circleValue(initVal, min, max);
 
 	LCDText_Locate(l, c);
 	LCDText_Printf("%0*d", maxDigits, initVal); //min: 4532 max: 8674
@@ -163,6 +163,7 @@ int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits) // @su
 
 void UI_DisplayTime(int l, int c)
 {
+	LCDText_Clear();
 	struct tm dateTime;
 	RTC_GetValue(&dateTime);
 	LCDText_Locate(l, c);
@@ -171,11 +172,12 @@ void UI_DisplayTime(int l, int c)
 
 void UI_SetTime(int l, int c)
 {
+	LCDText_Clear();
 	struct tm dateTime;
 	RTC_GetValue(&dateTime);
 	LCDText_Locate(l, c);
 	LCDText_Printf(DATE_FORMAT, dateTime.tm_year, dateTime.tm_mon, dateTime.tm_mday, dateTime.tm_hour, dateTime.tm_min);
-
+	LCD_Control(true, true, false);
 	dateTime.tm_year = UI_Number(l, c+YEAR_C, 0, 4095, dateTime.tm_year, 4);
 	dateTime.tm_mon = UI_Number(l, c+MON_C, 1, 12, dateTime.tm_mon, 2);
 	dateTime.tm_mday = UI_Number(l, c+DAY_C, 1, RTC_GetMonDays(dateTime.tm_year, dateTime.tm_mon), dateTime.tm_mday, 2);
@@ -183,4 +185,5 @@ void UI_SetTime(int l, int c)
 	dateTime.tm_min = UI_Number(l, c+MIN_C, 0, 59, dateTime.tm_min, 2);
 
 	RTC_SetValue(&dateTime);
+	LCD_Control(true, false, false);
 }

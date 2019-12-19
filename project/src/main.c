@@ -35,37 +35,34 @@
 
 int main(void) {
 
-    printf("Hello World\n");
-
-    return 0 ;
 }
 
 
 bool tempUnit = true;
-char* tempUnitOptions[2] = { "Celsius", "Fahrenheit" };
+char* tempUnitOptions[2] = { "Fahrenheit", "Celsius" };
 
 
-void changeTempUnit()
+void changeTempUnit(void)
 {
 	tempUnit = UI_SelectOptions(tempUnitOptions, 2);
 	FLASH_WriteData(tempUnitAddress, &tempUnit, sizeof(bool));
 }
 
-void setTime()
+void setTime(void)
 {
 	UI_SetTime(0, 0);
 }
 
-void normalMode()
+void normalMode(void)
 {
 	int time = wait_ms();
 	while(true)
 	{
 		UI_DisplayTime(0, 0);
 		LCDText_Locate(1, 0);
-		LCDText_Printf("%05.2f %c", BMP_getTemperature(tempUnit), tempUnit ? 'C' : 'F');
+		LCDText_Printf("%05.2f %c %04.0f Pa", BMP_getTemperature(tempUnit), tempUnit ? 'C' : 'F',BMP_getPressure());
 
-		wait_ms(200);
+		wait(200);
 		int code = BUTTON_Hit();
 
 		if(!(code & UPBUTTON && code & DOWNBUTTON))
@@ -74,6 +71,9 @@ void normalMode()
 		if(wait_elapsed(time) >= enterMenuTime)
 			break;
 	}
+	LCDText_Clear();
+	LCDText_Printf("Maintenance");
+	wait(2000);
 }
 
 struct Menu menus[3] = { {"Set Time", &setTime}, { "Set Temp", &changeTempUnit }, { "Exit", &normalMode } };
@@ -85,9 +85,11 @@ int start(void)
 	BUTTON_Init();
 	SPI_Init();
 	BMP_init();
+	BMP_config(0b000, 0b1, 0, 0b11, 0b11, 0b11);
 	wait_init();
 	WAIT_Init();
 	LCDText_Init();
+	LCD_Control(true, false, false);
 	RTC_Init(time(NULL));
 	LED_Init(false);
 
@@ -98,9 +100,6 @@ int start(void)
 
 int update(void)
 {
-	printf("Update\n");
-
 	UI_StartMenu(menus, 3, 2);
-
 	return 0;
 }

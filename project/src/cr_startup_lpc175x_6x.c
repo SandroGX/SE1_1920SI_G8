@@ -309,17 +309,14 @@ ResetISR(void) {
     __main() ;
 #else
     main();
-    start();
-    while(1)
-    	update();
 #endif
 
     //
     // main() shouldn't return, but if it does, we'll just enter an infinite loop
     //
-    while (1) {
-        ;
-    }
+    start();
+    while(1)
+    	update();
 }
 
 //*****************************************************************************

@@ -8,7 +8,7 @@
 #ifndef UI_H_
 #define UI_H_
 
-typedef void (*MenuFunc)();
+typedef void (*MenuFunc)(void);
 typedef struct Menu {
 	char *name;
 	MenuFunc menu;

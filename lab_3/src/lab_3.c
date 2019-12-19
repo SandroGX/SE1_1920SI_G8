@@ -34,4 +34,6 @@ int main(void)
 
 	LCD_Control(true, true, true);
 	LCDText_Printf("ABC: %d", 123);
+	wait(1000);
+	LCDText_Clear();
 }
