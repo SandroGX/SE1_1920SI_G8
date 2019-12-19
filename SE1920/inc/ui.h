@@ -8,6 +8,16 @@
 #ifndef UI_H_
 #define UI_H_
 
+typedef void (*MenuFunc)();
+typedef struct Menu {
+	char *name;
+	MenuFunc menu;
+} Menu;
+
+
+int UI_SelectOptions(char* options[], int count);
+void UI_SelectMenu(Menu menu[], int count);
+void UI_StartMenu(Menu menu[], int count, int init);
 int UI_Digit(int l, int c, int min, int max, int initVal,int maxDigits);
 int UI_Number(int l, int c, int min, int max, int initVal, int maxDigits);
 void UI_DisplayTime(int l, int c);

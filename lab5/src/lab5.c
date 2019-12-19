@@ -60,9 +60,9 @@ int main(void)
 	while(true) {
 		LCDText_Clear();
 		LCDText_Locate(0, 0);
-		LCDText_Printf("%05.2f C", getTemperature(true));
+		LCDText_Printf("%05.2f C", BMP_getTemperature(true));
 		LCDText_Locate(1, 0);
-		LCDText_Printf("%05.2f Pa", getPressure());
+		LCDText_Printf("%05.2f Pa", BMP_getPressure());
 		wait(200);
 	}
 }

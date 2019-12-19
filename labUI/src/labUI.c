@@ -43,7 +43,7 @@ int main(void) {
 	//LCDText_Printf("You chose %04d", c);
 
 	UI_SetTime(0, 0);
-	while(1)
+	while(true)
 		UI_DisplayTime(0, 0);
 
 }

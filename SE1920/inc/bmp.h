@@ -14,9 +14,9 @@ void BMP_init();
 void BMP_config(char t_sb, char filter, char spi3w_en, char osrs_t, char osrs_p, char mode);
 
 
-double getTemperature();
+double BMP_getTemperature(bool CnF);
 
-double getPressure();
+double BMP_getPressure();
 
 
 #endif /* BMP_H_ */

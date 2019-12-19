@@ -36,9 +36,9 @@
  * @brief	Macros that represent the number of the pin to which the button is connected
  * @{
  */
-#define BUTTON0_PIN 2
-#define BUTTON1_PIN 3
-#define BUTTON2_PIN 21
+#define UPBUTTON_PIN 2
+#define DOWNBUTTON_PIN 3
+#define ENTERBUTTON_PIN 21
 /**
  * @}
  */
@@ -48,9 +48,9 @@
  * @note mod 16 because they may be in different registers
  * @{
  */
-#define BUTTON0_PINCFG (BUTTON0_PIN%16)*2
-#define BUTTON1_PINCFG (BUTTON1_PIN%16)*2
-#define BUTTON2_PINCFG (BUTTON2_PIN%16)*2
+#define UPBUTTON_PINCFG (UPBUTTON_PIN%16)*2
+#define DOWNBUTTON_PINCFG (DOWNBUTTON_PIN%16)*2
+#define ENTERBUTTON_PINCFG (ENTERBUTTON_PIN%16)*2
 /**
  * @}
  */
@@ -59,9 +59,9 @@
  * @brief	Macros of the mask for the GPIO for each button
  * @{
  */
-#define BUTTON0 1<<BUTTON0_PIN
-#define BUTTON1 1<<BUTTON1_PIN
-#define BUTTON2 1<<BUTTON2_PIN
+#define UPBUTTON 1<<UPBUTTON_PIN
+#define DOWNBUTTON 1<<DOWNBUTTON_PIN
+#define ENTERBUTTON 1<<ENTERBUTTON_PIN
 /**
  * @}
  * @}

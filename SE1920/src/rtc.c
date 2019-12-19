@@ -22,6 +22,14 @@
 #define MON 0xf
 #define YR 0xfff
 
+int RTC_GetMonDays(int year, int month)
+{
+	const int m_days[12] = { 31, 0, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+
+	if(month == 2)
+		return (year%4==0 && !year%100==0) || year%400==0 ? 29 : 28;
+	else return m_days[month-1];
+}
 
 /* Devolve em dateTime o valor corrente do RTC. */
 void RTC_GetValue(struct tm *dateTime)

@@ -180,14 +180,14 @@ double bmp280_compensate_P_double(BMP280_S32_t adc_P)
 	return p;
 }
 
-double getTemperature(bool CnotF)
+double BMP_getTemperature(bool CnF)
 {
 	BMP280_S32_t adc_T = readAdc(0xfa);
 	double value = bmp280_compensate_T_double(adc_T);
-	return CnotF ? value : (value * 1.8 + 32);
+	return CnF ? value : (value * 1.8 + 32);
 }
 
-double getPressure()
+double BMP_getPressure()
 {
 	BMP280_S32_t adc_P = readAdc(0xf7);
 	return bmp280_compensate_P_double(adc_P);

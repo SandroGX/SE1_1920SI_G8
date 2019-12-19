@@ -9,6 +9,8 @@
 #ifndef RTC_H_
 #define RTC_H_
 
+int RTC_GetMonDays(int year, int month);
+
 /** @defgroup RTC
  * This package provides the core capabilities to manipulate Real Time Clock of the processor board
  * @{

@@ -147,23 +147,23 @@ int main(void) {
 	{
 		RTC_GetValue(&dateTime);
 		aux = dateTime;
-		if(BUTTON_Hit() & BUTTON0){
+		if(BUTTON_Hit() & UPBUTTON){
 			wait(200);
 			int loc = 0;
 			int col = 0;
 			while(loc<7 & col < 2){
-				if(BUTTON_Read() & BUTTON2){
+				if(BUTTON_Read() & ENTERBUTTON){
 					wait(200);
 					incrementValue(col, loc, &aux);
 				}
-				if(BUTTON_Read() & BUTTON1){
+				if(BUTTON_Read() & DOWNBUTTON){
 					wait(200);
 					loc = loc + 3;
 					if(loc>6){
 						loc = 0; col++;
 					}
 				}
-				if(BUTTON_Read() & BUTTON0){
+				if(BUTTON_Read() & UPBUTTON){
 					wait(200);
 					decrementValue(col, loc, &aux);
 				}

@@ -136,6 +136,8 @@ void CANActivity_IRQHandler(void) ALIAS(IntDefaultHandler);
 extern void __main(void);
 #endif
 extern int main(void);
+extern int start(void);
+extern int update(void);
 //*****************************************************************************
 //
 // External declaration for the pointer to the stack top from the Linker Script
@@ -307,6 +309,9 @@ ResetISR(void) {
     __main() ;
 #else
     main();
+    start();
+    while(1)
+    	update();
 #endif
 
     //
