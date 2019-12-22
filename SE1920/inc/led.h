@@ -24,7 +24,7 @@
 
 /**
  * @brief	Initializes the LED API
- * @param	state	: State of the LED. The 0 indicate led off and 1 LED on.
+ * @param	state: State of the LED. The 0 indicate led off and 1 LED on.
  * @return	Nothing
  * @note	This function must be called prior to any other LED functions. The
  * LED will started in the value passed in the parameter.

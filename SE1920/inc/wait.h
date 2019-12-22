@@ -27,7 +27,7 @@ void WAIT_Init(void);
 
 /**
  * @brief	Waits a number of microseconds.
- * @param	waitUs: the whole number of microseconds to wait.
+ * @param	waitUs: The whole number of microseconds to wait.
  */
 void WAIT_ChronoUs(uint32_t waitUs);
 

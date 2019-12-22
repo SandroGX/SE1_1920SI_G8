@@ -21,32 +21,32 @@ int RTC_GetMonDays(int year, int month);
  */
 
 /**
- * @brief returns in dateTime the current value of RTC
- * @param dateTime: pointer to struct tm we wanna affect
+ * @brief Returns in dateTime the current value of RTC
+ * @param dateTime: Pointer to struct tm we wanna affect
  */
 void RTC_GetValue(struct tm *dateTime);
 
 /**
- * @brief sets in dateTime the value of RTC
- * @param dateTime: pointer to struct tm we wanna affect RTC with
+ * @brief Sets in dateTime the value of RTC
+ * @param dateTime: Pointer to struct tm we wanna affect RTC with
  */
 void RTC_SetValue(struct tm *dateTime);
 
 /**
- * @brief sets in dateTime the value of RTC
- * @param seconds: time in seconds since january 1st 1970 00:00:00 UTC
+ * @brief Sets in dateTime the value of RTC
+ * @param seconds: Time in seconds since january 1st 1970 00:00:00 UTC
  */
 void RTC_SetSeconds(time_t seconds);
 
 /**
- * @brief returns the current value of RTC
- * @returns time in seconds since january 1st 1970  00:00:00 UTC
+ * @brief Returns the current value of RTC
+ * @returns Time in seconds since january 1st 1970  00:00:00 UTC
  */
 time_t RTC_GetSeconds(void);
 
 /**
- * @brief initializes the system to access RTC, initiating it with parameter seconds
- * @param seconds: time in seconds since january 1st 1970  00:00:00 UTC
+ * @brief Initializes the system to access RTC, initiating it with parameter seconds
+ * @param seconds: Time in seconds since january 1st 1970  00:00:00 UTC
  */
 void RTC_Init(time_t seconds);
 

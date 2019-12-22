@@ -23,17 +23,17 @@
 /**
  * @brief Sends 4 data bits and the rs bit to LCD
  * @returns Nothing
- * @param rs: 	if we are writing a command should be false(0),
- * 			 	if we are writing data should be true(1)
- * @param data4: the 4 bits corresponding to part of the command or character we are sending to the LCD
+ * @param rs: If we are writing a command should be false(0),
+ * 			  if we are writing data should be true(1)
+ * @param data4: The 4 bits corresponding to part of the command or character we are sending to the LCD
  */
 void LCDWrite5bits(bool rs, int data4);
 /**
  * @brief Sends 8 data bits and the rs bit to LCD
  * @returns Nothing
- * @param rs: 	if we are writing a command should be false(0),
+ * @param rs: If we are writing a command should be false(0),
  * 			 	if we are writing data should be true(1)
- * @param data8: 	the 8 bits corresponding to the full command or character we are sending to the LCD
+ * @param data8: The 8 bits corresponding to the full command or character we are sending to the LCD
  */
 void LCDWrite9bits(bool rs, int data8);
 
@@ -41,7 +41,7 @@ void LCDWrite9bits(bool rs, int data8);
  * @brief Sends command to LCD
  * @returns Nothing
  *
- * @param cmd8: the 8 bits corresponding to the command we are sending to the LCD
+ * @param cmd8: The 8 bits corresponding to the command we are sending to the LCD
  */
 void LCDWriteCMD(int cmd8);
 
@@ -49,7 +49,7 @@ void LCDWriteCMD(int cmd8);
  * @brief Writes character to LCD on the current position of the cursor
  * @returns Nothing
  *
- * @param data8: the 8 bits corresponding to the character we are sending to the LCD
+ * @param data8: The 8 bits corresponding to the character we are sending to the LCD
  */
 void LCDWriteData(int data8);
 
@@ -86,9 +86,9 @@ void LCDText_Clear(void);
  * @brief Controls the number of display lines and character font
  * @returns Nothing
  *
- * @param N: if true display 2 lines else display 1
+ * @param N: If true display 2 lines else display 1
  * @param F: Controls the type of font
- * @note font can only be controlled if N is false (1 display line)
+ * @note Font can only be controlled if N is false (1 display line)
  */
 void LCD_FuntionSet(bool N, bool F);
 
@@ -96,9 +96,9 @@ void LCD_FuntionSet(bool N, bool F);
  * @brief Controls if LCD display is on, if the cursor is shown and if it is blinking
  * @returns Nothing
  *
- * @param D: if true display on else off
- * @param C: if true the cursor is shown else it isn't
- * @param B: if true the cursor is blinking else it isn't
+ * @param D: If true display on else off
+ * @param C: If true the cursor is shown else it isn't
+ * @param B: If true the cursor is blinking else it isn't
  */
 void LCD_Control(bool D, bool C, bool B);
 
@@ -106,8 +106,8 @@ void LCD_Control(bool D, bool C, bool B);
  * @brief Control how the display behaves when characters are written to int
  * @returns Nothing
  *
- * @param ID: if true when a character is written cursor goes to the right else goes left
- * @param S: if true the entire display shifts right(ID = 1) or left(ID=0) when a character is written
+ * @param ID: If true when a character is written cursor goes to the right else goes left
+ * @param S: If true the entire display shifts right(ID = 1) or left(ID=0) when a character is written
  */
 void LCD_EntryModeSet(bool ID, bool S);
 
@@ -115,8 +115,8 @@ void LCD_EntryModeSet(bool ID, bool S);
  * @brief Writes to the current position of cursor with the same syntax as a printf
  * @returns Nothing
  *
- * @param fmt: the format string as used by printf
- * @param ...: the rest of the arguments that would be passed to printf go here
+ * @param fmt: The format string as used by printf
+ * @param ...: The rest of the arguments that would be passed to printf go here
  */
 void LCDText_Printf(char *fmt, ...);
 

@@ -25,20 +25,20 @@
 void wait_init();
 
 /**
- * @brief	returns the number of milliseconds since the this was initialized.
+ * @brief	Returns the number of milliseconds since the this was initialized.
  */
 uint32_t wait_ms();
 
 /**
- * @brief	returns the time elapsed since the time passed as parameter
- * @param	time: point in time from which we wanna know how much time passed
- * @returns the time elapsed since the time passed as parameter
+ * @brief	Returns the time elapsed since the time passed as parameter
+ * @param	time: Point in time from which we wanna know how much time passed
+ * @returns The time elapsed since the time passed as parameter
  */
 uint32_t wait_elapsed(uint32_t time);
 
 /**
  * @brief	Waits a number of milliseconds.
- * @param	milis: the whole number of milliseconds to wait.
+ * @param	milis: The whole number of milliseconds to wait.
  */
 void wait(uint32_t milis);
 
